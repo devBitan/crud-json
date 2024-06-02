@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crud json</title>
+</head>
+
+<body>
+  <header>
+    <h1 style="text-align: center;">Ejercicio CRUD json-server</h1>
+  </header>
+  <main>
+    <section class="container">
+      <form class="text-center mb-5">
+        <div class="form-group py-2 text-start">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" aria-describedby="title" placeholder="Enter title">
+        </div>
+        <div class="form-group mb-2 text-start">
+          <label for="comment">Comment</label>
+          <input type="text" class="form-control" id="comment" aria-describedby="comment" placeholder="Enter comment">
+        </div>
+        <button type="submit" id="btn-new" class="btn btn-success">
+          save
+        </button>
+      </form>
+    </section>
+    <section>
+      <div class="table-responsive">
+        <table class="table table-sm table-striped text-center align-middle table-hover">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Commet</th>
+              <th scope="col">Status</th>
+              <th scope="col">options</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            <!-- Aca se van a listar las categorias -->
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+  </main>
+  <footer>
+
+  </footer>
+  <script type="module" src="./src/js/main.js"></script>
+</body>
+
+</html>
