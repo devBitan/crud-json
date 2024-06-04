@@ -38,6 +38,7 @@ async function createDAta(title, comment) {
         },
         body: JSON.stringify(noteNew) // convertimos el objeto de js en un dato de tipo json
     })
+    await getData()
 }
 
 //crear  función para obtener la info (READ)
@@ -79,7 +80,7 @@ async function updateData(idUpdate, title, comment) {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(infoUpdate)
+        body: JSON.stringify(infoUpdate) 
     })
     await getData()
 }
@@ -88,8 +89,8 @@ async function updateData(idUpdate, title, comment) {
 async function deleteData(parametro) { // recibimos el argumento (que es el id de la nota que quiero eliminar)
     await fetch(`${URL}/${parametro}`, { // le indicamos que info se va a eliminar de la base de datos por medio de su id
         method: "DELETE", // le indicamos el metodo para enviarle en la url el id
-        headers: { // sabes que contenido estoy suando 
-            "Content-Type": "application/json",
+        headers: { 
+            "Content-Type": "application/json", // sabes que contenido estoy suando 
         }
     })
     await getData() // llamar de nuevo la obtención de datos para que me muestre la info actualizada sin el elemento eliminado
@@ -97,10 +98,11 @@ async function deleteData(parametro) { // recibimos el argumento (que es el id d
 
 //crear funcion modificar unicamente un dato (PATCH)
 async function disableNote(id) { // funcuion deshabilitar una nota
-    const response = await fetch(`${URL}/${id}`);
-    const data = await response.json();
-    const newStatus = data.status === 'active' ? 'disabled' : 'active';
-    const infoUpdate = {
+    const response = await fetch(`${URL}/${id}`); // le enviamos por query parametros que busque ese ID
+    const data = await response.json(); // si encuentra el ID, retorne el objeto de ese ID (la nota, es decir, title y coment)
+    const newStatus = data.status === 'active' ? 'disabled' : 'active'; // se cambiem de manera alternada
+
+    const infoUpdate = { // creamos el objeto para enviar la info que se va a actualizar
         status: newStatus
     }
     await fetch(`${URL}/${id}`, {
@@ -118,7 +120,6 @@ form.addEventListener("submit", async function (e) { //colocamos un escuchador d
     e.preventDefault() 
     if (idUpdate === undefined) { //crear
         await createDAta(title, comment) 
-        await getData()
         form.reset()
     } else { // actualizar
         await updateData(idUpdate, title, comment)
